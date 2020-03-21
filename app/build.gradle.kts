@@ -24,13 +24,13 @@ val fileBuilder: groovy.lang.Closure<Any?> by extra
 
 object TWAManifest {
     const val applicationId = "app.ryss.android.stockbroud"
-    const val hostName = "staging.ryss.app" // The domain being opened in the TWA.
+    const val hostName = "ryss.app" // The domain being opened in the TWA.
     const val launchUrl = "/" // The start path for the TWA. Must be relative to the domain.
     const val name = "Ryss" // The name shown on the Android Launcher.
     const val themeColor = "#70d156" // The color used for the status bar.
     const val navigationColor = "#469c30" // The color used for the navigation bar.
     const val backgroundColor = "#afe4a0" // The color used for the splash screen background.
-    const val enableNotifications = false// Set to true to enable notification delegation.
+    const val enableNotifications = false // Set to true to enable notification delegation.
 
     // Add shortcuts for your app here. Every shortcut must include the following fields:
     // - name=String that will show up in the shortcut.
