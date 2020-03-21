@@ -1,23 +1,23 @@
 import groovy.xml.MarkupBuilder
 
-ext.fileBuilder = { shortcutsFile, twaManifest ->
+ext.fileBuilder = { File shortcutsFile, twaManifest ->
     def xmlWriter = new StringWriter()
     def xmlMarkup = new MarkupBuilder(new IndentPrinter(xmlWriter, "    ", true))
 
     xmlMarkup
             .'shortcuts'('xmlns:android': 'http://schemas.android.com/apk/res/android') {
-                twaManifest.shortcuts.eachWithIndex { s, i ->
+                twaManifest.shortcuts.eachWithIndex { s, int i ->
                     'shortcut'(
                             'android:shortcutId': 'shortcut' + i,
                             'android:enabled': 'true',
-                            'android:icon': '@drawable/' + s.icon,
+                            'android:icon': '@drawable/' + (s.icon as String),
                             'android:shortcutShortLabel': '@string/shortcut_short_name_' + i,
                             'android:shortcutLongLabel': '@string/shortcut_name_' + i) {
                         'intent'(
                                 'android:action': 'android.intent.action.MAIN',
                                 'android:targetPackage': twaManifest.applicationId,
                                 'android:targetClass': 'com.google.androidbrowserhelper.trusted.LauncherActivity',
-                                'android:data': 'https://' + twaManifest.hostName + s.url)
+                                'android:data': 'https://' + (twaManifest.hostName as String) + (s.url as String))
                         'categories'('android:name': 'android.intent.category.LAUNCHER')
                     }
                 }

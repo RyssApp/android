@@ -22,12 +22,14 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.placeholder">
 
+    <!-- This is just a TWA we don't need any backups just keep our cookies chrome, and you're fine-->
     <application
-        android:allowBackup="true"
+        android:allowBackup="false"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/appName"
         android:supportsRtl="true"
-        android:theme="@style/Theme.LauncherActivity">
+        android:theme="@style/Theme.LauncherActivity"
+      android:fullBackupContent="">
 
         <meta-data
             android:name="asset_statements"
