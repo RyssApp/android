@@ -14,18 +14,18 @@
  * limitations under the License.
  */
 
-import groovy.xml.MarkupBuilder;
+import groovy.xml.MarkupBuilder
 
 apply plugin: 'com.android.application'
 
 def twaManifest = [
-    applicationId: 'org.chromium.twa.svgomg',
-    hostName: 'svgomg.firebaseapp.com', // The domain being opened in the TWA.
+    applicationId: 'app.ryss.android.stockbroud',
+    hostName: 'staging.ryss.app', // The domain being opened in the TWA.
     launchUrl: '/', // The start path for the TWA. Must be relative to the domain.
-    name: 'SVGOMG TWA', // The name shown on the Android Launcher.
-    themeColor: '#303F9F', // The color used for the status bar.
-    navigationColor: '#303F9F', // The color used for the navigation bar.
-    backgroundColor: '#bababa', // The color used for the splash screen background.
+    name: 'Ryss', // The name shown on the Android Launcher.
+    themeColor: '#70d156', // The color used for the status bar.
+    navigationColor: '#469c30', // The color used for the navigation bar.
+    backgroundColor: '#afe4a0', // The color used for the splash screen background.
     enableNotifications: false, // Set to true to enable notification delegation.
     // Add shortcuts for your app here. Every shortcut must include the following fields:
     // - name: String that will show up in the shortcut.
@@ -44,10 +44,10 @@ android {
     compileSdkVersion 29
     defaultConfig {
         applicationId twaManifest.applicationId
-        minSdkVersion 16
+        minSdkVersion 23
         targetSdkVersion 29
-        versionCode 3
-        versionName "2.0.0"
+        versionCode 1
+        versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         // The name for the application on the Android Launcher
@@ -75,7 +75,7 @@ android {
                 "relation": ["delegate_permission/common.handle_all_urls"],
                 "target": {
                     "namespace": "web",
-                    "site": "https://$twaManifest.hostName"
+                    "site": "https://${twaManifest.hostName}"
                 }
             }]"""
 
@@ -160,5 +160,5 @@ preBuild.dependsOn(generateShorcutsFile)
 
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
-    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:1.1.0'
+    implementation 'com.google.androidbrowserhelper:androidbrowserhelper:1.2.0'
 }
