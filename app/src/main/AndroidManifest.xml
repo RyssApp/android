@@ -20,7 +20,7 @@
      application, the package attribute will need to reflect the correct path in order to use
      the abbreviated format. -->
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.placeholder">
+    package="app.ryss">
 
     <!-- This is just a TWA we don't need any backups just keep our cookies chrome, and you're fine-->
     <application
