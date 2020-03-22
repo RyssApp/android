@@ -130,10 +130,10 @@ tasks {
     val generateShortcutsFile = task("generateShorcutsFile") {
         require(TWAManifest.shortcuts.size < 5) { "You can have at most 4 shortcuts." }
         TWAManifest.shortcuts.forEachIndexed { i, s ->
-            require(s.name != null) { "Missing `name` in shortcut #" + i }
-            require(s.shortName != null) { "Missing `short_name` in shortcut #" + i }
-            require(s.url != null) { "Missing `icon` in shortcut #" + i }
-            require(s.icon != null) { "Missing `url` in shortcut #" + i }
+            require(s.name != null) { "Missing `name` in shortcut #$i" }
+            require(s.shortName != null) { "Missing `short_name` in shortcut #$i" }
+            require(s.url != null) { "Missing `icon` in shortcut #$i" }
+            require(s.icon != null) { "Missing `url` in shortcut #$i" }
         }
 
         val shortcutsFile = File("$projectDir/src/main/res/xml", "shortcuts.xml")
@@ -147,45 +147,7 @@ tasks {
     }
 }
 
-//task generateShorcutsFile {
-//    assert TWAManifest.shortcuts.size() < 5, "You can have at most 4 shortcuts."
-//    TWAManifest.shortcuts.eachWithIndex { s, i ->
-//        assert s.name != null, "Missing `name` in shortcut #" + i
-//        assert s.short_name != null, "Missing `short_name` in shortcut #" + i
-//        assert s.url != null, "Missing `icon` in shortcut #" + i
-//        assert s.icon != null, "Missing `url` in shortcut #" + i
-//    }
-//
-//    def shortcutsFile = new File("$projectDir/src/main/res/xml", "shortcuts.xml")
-//
-//    def xmlWriter = new StringWriter()
-//    def xmlMarkup = new MarkupBuilder(new IndentPrinter(xmlWriter, "    ", true))
-//
-//    xmlMarkup
-//        ."shortcuts"("xmlns:android"="http://schemas.android.com/apk/res/android") {
-//            TWAManifest.shortcuts.eachWithIndex { s, i ->
-//                "shortcut"(
-//                        "android:shortcutId"="shortcut" + i,
-//                        "android:enabled"="true",
-//                        "android:icon"="@drawable/" + s.icon,
-//                        "android:shortcutShortLabel"="@string/shortcut_short_name_" + i,
-//                        "android:shortcutLongLabel"="@string/shortcut_name_" + i) {
-//                    "intent"(
-//                            "android:action"="android.intent.action.MAIN",
-//                            "android:targetPackage"=TWAManifest.applicationId,
-//                            "android:targetClass"="com.google.androidbrowserhelper.trusted.LauncherActivity",
-//                            "android:data"="https://" + TWAManifest.hostName + s.url)
-//                    "categories"("android:name"="android.intent.category.LAUNCHER")
-//                }
-//            }
-//        }
-//    shortcutsFile.text = xmlWriter.toString() + "\n"
-//}
-
-//preBuild.dependsOn(generateShorcutsFile)
-
 dependencies {
     implementation(files("libs/"))
     implementation("com.google.androidbrowserhelper", "androidbrowserhelper", "1.2.0")
 }
-
